@@ -1,0 +1,67 @@
+/*Problem Statement:
+Check whether a given binary tree satisfies the Min-Heap property.
+
+Input Format:
+- First line contains integer N
+- Second line contains level-order traversal
+
+Output Format:
+- Print YES if valid Min-Heap, otherwise NO
+
+Example:
+Input:
+7
+1 3 5 7 9 8 10
+
+Output:
+YES
+
+Explanation:
+Each parent node must be smaller than its children.*/
+
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+
+    int arr[n];
+
+    // Input elements
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    int isHeap = 1; // Assume it is a Min-Heap
+
+    // Check Min-Heap property
+    for (int i = 0; i <= (n / 2) - 1; i++)
+    {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        // Check left child
+        if (left < n && arr[i] > arr[left])
+        {
+            isHeap = 0;
+            break;
+        }
+
+        // Check right child
+        if (right < n && arr[i] > arr[right])
+        {
+            isHeap = 0;
+            break;
+        }
+    }
+
+    // Output result
+    if (isHeap)
+        printf("YES");
+    else
+        printf("NO");
+
+    return 0;
+}
